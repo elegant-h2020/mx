@@ -175,8 +175,11 @@ local with(os, arch, java_release, timelimit="15:00") = common.sulong.deps[os] +
     },
 
     mx_unit_test:: self.with_name("unit-tests") + {
+        environment+: {
+            __MX_MODULE__: path("tests/benchmark_tests.py")
+        },
         run: [
-            [ path("tests/run") ],
+            [mx]
         ],
     },
 
