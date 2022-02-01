@@ -146,7 +146,8 @@ local with(os, arch, java_release, timelimit="15:00") = common.sulong.deps[os] +
 
     build_truffleruby:: self.with_name("gate-build-truffleruby") + common.sulong.deps[os] + {
         packages+: {
-            ruby: ">=" + versions.ruby
+            ruby: ">=" + versions.ruby,
+            python3: "==" + versions.python3,
         },
         environment+: {
             PATH: "$BUILD_DIR/main:$PATH", # add ./mx on PATH
@@ -165,6 +166,7 @@ local with(os, arch, java_release, timelimit="15:00") = common.sulong.deps[os] +
             devtoolset: "==" + versions.devtoolset,
             make: ">=" + versions.make,
             binutils: "==" + versions.binutils,
+            python3: "==" + versions.python3,
         },
         run: [
             [mx, "sclone", "--kind", "git", "--source", "https://github.com/oracle/graal.git", "--dest", "../graal"],
